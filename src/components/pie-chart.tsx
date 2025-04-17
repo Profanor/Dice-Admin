@@ -1,11 +1,4 @@
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Legend,
-  Tooltip,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { MoreVertical } from "lucide-react";
 
 const data = [
@@ -21,7 +14,7 @@ const renderCustomizedLegend = (props: any) => {
   const { payload } = props;
 
   return (
-    <div className="flex flex-col gap-2 text-xs">
+    <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-4 text-xs">
       {payload.map((entry: any, index: number) => (
         <div key={`item-${index}`} className="flex items-center gap-2">
           <div
@@ -37,18 +30,18 @@ const renderCustomizedLegend = (props: any) => {
 
 export default function GamesPieChart() {
   return (
-    <div className="w-full">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold">Most played Games</h3>
+    <div className="w-full flex flex-col">
+      <div className="relative mb-4">
+        <h3 className="text-lg font-semibold text-center">Most played Games</h3>
         <button
-          className="text-gray-500 hover:text-gray-700"
+          className="absolute right-0 top-1 text-gray-500 hover:text-gray-700"
           title="More options"
         >
           <MoreVertical className="h-5 w-5" />
         </button>
       </div>
 
-      <div className="h-[250px] w-full">
+      <div className="h-[200px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -56,7 +49,7 @@ export default function GamesPieChart() {
               cx="50%"
               cy="50%"
               innerRadius={0}
-              outerRadius={80}
+              outerRadius={70}
               paddingAngle={2}
               dataKey="value"
             >
@@ -65,14 +58,17 @@ export default function GamesPieChart() {
               ))}
             </Pie>
             <Tooltip />
-            <Legend
-              content={renderCustomizedLegend}
-              layout="vertical"
-              verticalAlign="middle"
-              align="right"
-            />
           </PieChart>
         </ResponsiveContainer>
+      </div>
+
+      <div className="mt-2">
+        {renderCustomizedLegend({
+          payload: data.map((item) => ({
+            value: item.name,
+            color: item.color,
+          })),
+        })}
       </div>
     </div>
   );
