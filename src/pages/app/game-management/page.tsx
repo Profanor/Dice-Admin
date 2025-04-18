@@ -8,7 +8,7 @@ const games = [
     id: 1,
     title: "Tournament",
     tag: { text: "Big wins", variant: "yellow" as const },
-    backgroundImage: "frame1.svg",
+    backgroundImage: "frame2.svg",
   },
   {
     id: 2,
@@ -20,27 +20,27 @@ const games = [
     id: 3,
     title: "Single",
     tag: { text: "Fast", variant: "green" as const },
-    backgroundImage: "frame1.svg",
+    backgroundImage: "frame3.svg",
   },
   {
     id: 4,
     title: "Under/Over",
     tag: undefined,
-    backgroundImage: "frame1.svg",
+    backgroundImage: "frame.svg",
   },
-  { id: 5, title: "Colors", tag: undefined, backgroundImage: "frame1.svg" },
+  { id: 5, title: "Colors", tag: undefined, backgroundImage: "frame.svg" },
   {
     id: 6,
     title: "Calenda",
     tag: { text: "Exclusive", variant: "exclusive" as const },
-    backgroundImage: "frame1.svg",
+    backgroundImage: "frame4.svg",
   },
-  { id: 7, title: "Lotto", tag: undefined, backgroundImage: "frame1.svg" },
+  { id: 7, title: "Lotto", tag: undefined, backgroundImage: "frame.svg" },
   {
     id: 8,
     title: "Mega 10",
     tag: { text: "Star", variant: "blue" as const },
-    backgroundImage: "frame1.svg",
+    backgroundImage: "frame.svg",
   },
   {
     id: 9,
@@ -52,7 +52,7 @@ const games = [
     id: 10,
     title: "Odds / Even",
     tag: undefined,
-    backgroundImage: "frame1.svg",
+    backgroundImage: "frame.svg",
   },
 ];
 

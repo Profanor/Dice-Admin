@@ -1,7 +1,128 @@
+import AnalyticsBarChart from "@/components/bar-chart";
+import PageHeader from "@/components/page-header";
+import GamesPieChart from "@/components/pie-chart";
+import WeekSelector from "@/components/week-selector";
+import Leaderboard from "@/components/leaderboard";
+
+// sample data
+const playerData = [
+  {
+    id: 1,
+    position: 1,
+    name: "George Jones",
+    avatar: "/assets/images/dp.svg",
+    currency: "USD" as const,
+    amountStaked: 653518,
+    wins: 423,
+    losses: 566,
+    gamesPlayed: 9462,
+    frequentlyPlayedGame: "Under/over",
+  },
+  {
+    id: 2,
+    position: 2,
+    name: "Savannah Nguyen",
+    avatar: "/assets/images/dp.svg",
+    currency: "HKD" as const,
+    amountStaked: 651535,
+    wins: 626,
+    losses: 536,
+    gamesPlayed: 4152,
+    frequentlyPlayedGame: "Odd/Even",
+  },
+  {
+    id: 3,
+    position: 3,
+    name: "Leslie Alexander",
+    avatar: "/assets/images/dp.svg",
+    currency: "EUR" as const,
+    amountStaked: 267400,
+    wins: 922,
+    losses: 423,
+    gamesPlayed: 6065,
+    frequentlyPlayedGame: "Single",
+  },
+  {
+    id: 4,
+    position: 4,
+    name: "Annette Black",
+    avatar: "/assets/images/dp.svg",
+    currency: "EUR" as const,
+    amountStaked: 653518,
+    wins: 796,
+    losses: 177,
+    gamesPlayed: 1784,
+    frequentlyPlayedGame: "Colors",
+  },
+  {
+    id: 5,
+    position: 5,
+    name: "Floyd Miles",
+    avatar: "/assets/images/dp.svg",
+    currency: "CAD" as const,
+    amountStaked: 459003,
+    wins: 274,
+    losses: 453,
+    gamesPlayed: 8561,
+    frequentlyPlayedGame: "Lotto",
+  },
+  {
+    id: 6,
+    position: 6,
+    name: "Devon Lane",
+    avatar: "/assets/images/dp.svg",
+    currency: "AUD" as const,
+    amountStaked: 651535,
+    wins: 703,
+    losses: 385,
+    gamesPlayed: 2798,
+    frequentlyPlayedGame: "Tournament",
+  },
+  {
+    id: 7,
+    position: 7,
+    name: "Robert Fox",
+    avatar: "/assets/images/dp.svg",
+    currency: "NGN" as const,
+    amountStaked: 267400,
+    wins: 883,
+    losses: 354,
+    gamesPlayed: 6690,
+    frequentlyPlayedGame: "Mega 10",
+  },
+];
+
 export default function GameControls() {
   return (
     <>
-      <h1>Analytics Page</h1>
+      <div className="flex items-center justify-between mb-6">
+        <PageHeader
+          title="Analytics"
+          breadcrumbs={[{ label: "Welcome to your dashboard", href: "/" }]}
+        />
+        <WeekSelector />
+      </div>
+
+      {/* charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h2 className="text-xl font-bold mb-4">Analytics</h2>
+          <AnalyticsBarChart />
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <GamesPieChart />
+        </div>
+      </div>
+
+      <div className="p-6">
+        <Leaderboard
+          data={playerData}
+          title="Highest bettor on Games played"
+          subtitle="Players rankings"
+          totalPages={10}
+        />
+      </div>
     </>
   );
 }
