@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 
 export default function SearchInput() {
   return (
-    <div className="relative w-100">
+    <div className="relative w-full">
       {" "}
       {/* increased width */}
       <input

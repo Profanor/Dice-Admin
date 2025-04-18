@@ -1,0 +1,67 @@
+import AnalyticsBarChart from "@/components/bar-chart";
+import GamesPieChart from "@/components/pie-chart";
+import StatCard from "@/components/stat-card";
+import WeekSelector from "@/components/week-selector";
+import PageHeader from "@/components/page-header";
+import { Activity, BookOpen, FileText, Trophy } from "lucide-react";
+
+export default function Overview() {
+  return (
+    <>
+      <div className="flex items-center justify-between mb-6">
+        <PageHeader
+          title="Overview"
+          breadcrumbs={[{ label: "Welcome to your dashboard", href: "/" }]}
+        />
+        <WeekSelector />
+      </div>
+
+      {/* stat cards */}
+      <div className="flex flex-wrap gap-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm p-6 flex-1 min-w-[200px]">
+          <StatCard
+            value={"100M"}
+            label="Total stake"
+            icon={<FileText className="h-5 w-5 text-gray-400" />}
+          />
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-6 flex-1 min-w-[200px]">
+          <StatCard
+            value="256k"
+            label="Total Tournaments"
+            icon={<Trophy className="h-5 w-5 text-gray-400" />}
+          />
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-6 flex-1 min-w-[200px]">
+          <StatCard
+            value="80"
+            label="Total Active Tournaments"
+            icon={<Activity className="h-5 w-5 text-gray-400" />}
+          />
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-6 flex-1 min-w-[200px]">
+          <StatCard
+            value="157k"
+            label="Subscribed Games"
+            icon={<BookOpen className="h-5 w-5 text-gray-400" />}
+          />
+        </div>
+      </div>
+
+      {/* charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h2 className="text-xl font-bold mb-4">Analytics</h2>
+          <AnalyticsBarChart />
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <GamesPieChart />
+        </div>
+      </div>
+    </>
+  );
+}

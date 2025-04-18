@@ -1,5 +1,4 @@
-import type React from "react";
-import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   GamepadIcon,
@@ -32,14 +31,35 @@ const NavItem = ({ icon, label, active, onClick }: NavItemProps) => (
 );
 
 export default function Sidebar() {
-  const [activeItem, setActiveItem] = useState("Dashboard");
+  const navigate = useNavigate();
+  const location = useLocation(); // get current path
 
   const navItems = [
-    { icon: <LayoutDashboard size={20} />, label: "Dashboard" },
-    { icon: <GamepadIcon size={20} />, label: "Game management" },
-    { icon: <Gamepad2Icon size={20} />, label: "Games & Controls" },
-    { icon: <BarChart3 size={20} />, label: "Analytics" },
-    { icon: <Settings size={20} />, label: "Settings" },
+    {
+      icon: <LayoutDashboard size={20} />,
+      label: "Dashboard",
+      path: "/dashboard",
+    },
+    {
+      icon: <GamepadIcon size={20} />,
+      label: "Game management",
+      path: "/dashboard/management",
+    },
+    {
+      icon: <Gamepad2Icon size={20} />,
+      label: "Games & Controls",
+      path: "/dashboard/controls",
+    },
+    {
+      icon: <BarChart3 size={20} />,
+      label: "Analytics",
+      path: "/dashboard/analytics",
+    },
+    {
+      icon: <Settings size={20} />,
+      label: "Settings",
+      path: "/dashboard/settings",
+    },
   ];
 
   return (
@@ -56,8 +76,8 @@ export default function Sidebar() {
             key={item.label}
             icon={item.icon}
             label={item.label}
-            active={activeItem === item.label}
-            onClick={() => setActiveItem(item.label)}
+            active={location.pathname === item.path} // use path comparison
+            onClick={() => navigate(item.path)}
           />
         ))}
       </div>

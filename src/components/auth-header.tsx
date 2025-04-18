@@ -1,6 +1,6 @@
 const logo = "/assets/images/logo.svg";
 
-export default function AdminHeader() {
+export default function AuthHeader() {
   return (
     <header className="w-full bg-[#001A26] py-4 px-4 md:px-6">
       <div className="w-full flex items-center justify-between">
