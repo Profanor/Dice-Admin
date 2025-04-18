@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 const logo = "/assets/images/logo.svg";
+const user = "/assets/images/smavatar.svg";
 
 interface NavItemProps {
   icon: React.ReactNode;
@@ -21,7 +22,7 @@ interface NavItemProps {
 const NavItem = ({ icon, label, active, onClick }: NavItemProps) => (
   <div
     className={`flex items-center gap-3 px-4 py-3 rounded-md cursor-pointer transition-colors ${
-      active ? "bg-sky-600 text-white" : "text-white/80 hover:bg-sky-700/50"
+      active ? "bg-[#2BADE7] text-white" : "text-white/80 hover:bg-sky-700/50"
     }`}
     onClick={onClick}
   >
@@ -72,11 +73,7 @@ export default function Sidebar() {
       <div className="border-t border-white/10 mt-2 pt-2 px-4 py-2">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
-            <img
-              src="/placeholder.svg?height=32&width=32"
-              alt="User"
-              className="w-full h-full object-cover"
-            />
+            <img src={user} alt="User" className="w-full h-full object-cover" />
           </div>
           <div className="flex flex-col">
             <span className="text-white text-xs font-medium">Olivia Rhye</span>
