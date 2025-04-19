@@ -3,7 +3,11 @@ import GamesPieChart from "@/components/pie-chart";
 import StatCard from "@/components/stat-card";
 import WeekSelector from "@/components/week-selector";
 import PageHeader from "@/components/page-header";
-import { Activity, BookOpen, FileText, Trophy } from "lucide-react";
+
+const stake = "/assets/images/stake.svg";
+const pad = "/assets/images/pad.svg";
+const sub = "/assets/images/sub.svg";
+const trophy = "/assets/images/trophy.svg";
 
 export default function Overview() {
   return (
@@ -22,7 +26,7 @@ export default function Overview() {
           <StatCard
             value={"100M"}
             label="Total stake"
-            icon={<FileText className="h-5 w-5 text-gray-400" />}
+            icon={<img src={stake} alt="Stake Icon" className="w-8 h-8" />}
           />
         </div>
 
@@ -30,7 +34,7 @@ export default function Overview() {
           <StatCard
             value="256k"
             label="Total Tournaments"
-            icon={<Trophy className="h-5 w-5 text-gray-400" />}
+            icon={<img src={trophy} alt="Trophy Icon" className="w-8 h-8" />}
           />
         </div>
 
@@ -38,7 +42,7 @@ export default function Overview() {
           <StatCard
             value="80"
             label="Total Active Tournaments"
-            icon={<Activity className="h-5 w-5 text-gray-400" />}
+            icon={<img src={pad} alt="Pad Icon" className="w-8 h-8" />}
           />
         </div>
 
@@ -46,7 +50,7 @@ export default function Overview() {
           <StatCard
             value="157k"
             label="Subscribed Games"
-            icon={<BookOpen className="h-5 w-5 text-gray-400" />}
+            icon={<img src={sub} alt="Subscription Icon" className="w-8 h-8" />}
           />
         </div>
       </div>
