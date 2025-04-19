@@ -18,7 +18,7 @@ export default function Overview() {
 
       {/* stat cards */}
       <div className="flex flex-wrap gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-sm p-6 flex-1 min-w-[200px]">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
             value={"100M"}
             label="Total stake"
@@ -26,7 +26,7 @@ export default function Overview() {
           />
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 flex-1 min-w-[200px]">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
             value="256k"
             label="Total Tournaments"
@@ -34,7 +34,7 @@ export default function Overview() {
           />
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 flex-1 min-w-[200px]">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
             value="80"
             label="Total Active Tournaments"
@@ -42,7 +42,7 @@ export default function Overview() {
           />
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6 flex-1 min-w-[200px]">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
             value="157k"
             label="Subscribed Games"

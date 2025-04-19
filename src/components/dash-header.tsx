@@ -7,8 +7,8 @@ export default function Header() {
   return (
     <div className="flex items-center justify-between px-4 sm:px-8 py-3 w-full bg-[#001A26] text-white gap-4 overflow-x-auto whitespace-nowrap">
       {/* search input */}
-      <div className="min-w-0 flex-shrink">
-        <div className="w-48 sm:w-64">
+      <div className="min-w-0 flex-grow">
+        <div className="w-full sm:max-w-md">
           <SearchInput />
         </div>
       </div>
