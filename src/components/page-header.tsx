@@ -45,7 +45,7 @@ export default function PageHeader({
       {actionLabel && (
         <button
           onClick={onAction}
-          className="flex items-center gap-2 bg-[#2BADE7] hover:bg-[#1A9AD5] text-white px-4 py-2 rounded-full transition-colors"
+          className="cursor-pointer flex items-center gap-2 bg-[#2BADE7] hover:bg-[#1A9AD5] text-white px-4 py-2 rounded-full transition-colors"
         >
           <Plus className="h-4 w-4" />
           <span>{actionLabel}</span>

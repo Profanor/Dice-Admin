@@ -14,7 +14,7 @@ export default function GameCard({
 }: GameCardProps) {
   return (
     <div
-      className="relative rounded-xl overflow-hidden cursor-pointer transition-transform"
+      className="relative rounded-xl overflow-hidden cursor-pointer transition-transform transform hover:scale-105 transition-all delay-75"
       onClick={onClick}
     >
       <div className="relative w-full h-60 p-1 flex flex-col justify-between">

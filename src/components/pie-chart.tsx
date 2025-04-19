@@ -18,7 +18,7 @@ const renderCustomizedLegend = (props: any) => {
       {payload.map((entry: any, index: number) => (
         <div key={`item-${index}`} className="flex items-center gap-2">
           <div
-            className="w-3 h-3 rounded-full"
+            className="w-2 h-2 rounded-full"
             style={{ backgroundColor: entry.color }}
           ></div>
           <span>{entry.value}</span>
@@ -48,9 +48,13 @@ export default function GamesPieChart() {
               data={data}
               cx="50%"
               cy="50%"
-              innerRadius={0}
-              outerRadius={70}
-              paddingAngle={2}
+              innerRadius={2}
+              isAnimationActive={true}
+              animationDuration={800}
+              animationEasing="ease-out"
+              outerRadius={90}
+              paddingAngle={0}
+              // cornerRadius={4}
               dataKey="value"
             >
               {data.map((entry, index) => (

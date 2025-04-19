@@ -104,13 +104,14 @@ export default function GameControls() {
       </div>
 
       {/* charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-xl font-bold mb-4">Analytics</h2>
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* bar chart - takes available space */}
+        <div className="flex-1 bg-white rounded-xl shadow-lg border border-gray-100 p-6">
           <AnalyticsBarChart />
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-6">
+        {/* pie chart - aligned to right */}
+        <div className="w-[360px] bg-white rounded-2xl shadow-md border border-gray-100 p-4">
           <GamesPieChart />
         </div>
       </div>
