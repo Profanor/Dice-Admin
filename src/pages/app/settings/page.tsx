@@ -1,9 +1,9 @@
 import { useState } from "react";
 import TabNavigation from "@/components/tab-navigation";
-import ProfileSection from "@/components/profile-upload";
-import FormField from "@/components/form-field";
-import SectionHeader from "@/components/section-header";
-import { Mail } from "lucide-react";
+import AccountTab from "@/components/account-tab";
+import ProfitsTab from "@/components/profits-tab";
+import PasswordTab from "@/components/password-tab";
+import ProfitShareTab from "@/components/profit-share-tab";
 
 const tabs = [
   { id: "account", label: "My Account details" },
@@ -15,10 +15,10 @@ const tabs = [
   { id: "api", label: "API" },
 ];
 
-export default function AccountSettings() {
+export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState("account");
 
-  //  API call
+  // API call
   const userData = {
     photo: "/placeholder.svg?height=100&width=100",
     companyName: "Hollywood Bets",
@@ -33,8 +33,30 @@ export default function AccountSettings() {
     console.log("Saving changes...");
   };
 
+  // render the appropriate tab content based on activeTab
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "account":
+        return <AccountTab userData={userData} onSave={handleSaveChanges} />;
+      case "profits":
+        return <ProfitsTab />;
+      case "share":
+        return <ProfitShareTab />;
+      case "password":
+        return <PasswordTab />;
+      case "webhook":
+        return <div>Webhook content goes here</div>;
+      case "theme":
+        return <div>Theme settings content goes here</div>;
+      case "api":
+        return <div>API content goes here</div>;
+      default:
+        return <AccountTab userData={userData} onSave={handleSaveChanges} />;
+    }
+  };
+
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="w-full px-6 lg:px-12 max-w-screen-xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">Settings</h1>
 
       <TabNavigation
@@ -43,87 +65,7 @@ export default function AccountSettings() {
         onChange={setActiveTab}
       />
 
-      <div className="bg-white rounded-lg p-6">
-        <SectionHeader
-          title="Personal info"
-          description="Update your photo and personal details here."
-        />
-
-        <div className="mb-8">
-          <ProfileSection initialImage={userData.photo} />
-        </div>
-
-        <FormField label="Company name" htmlFor="companyName">
-          <input
-            id="companyName"
-            type="text"
-            defaultValue={userData.companyName}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2BADE7] focus:border-[#2BADE7]"
-          />
-        </FormField>
-
-        <FormField label="Email address" htmlFor="email">
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Mail className="h-5 w-5 text-gray-400" />
-            </div>
-            <input
-              id="email"
-              type="email"
-              defaultValue={userData.email}
-              className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2BADE7] focus:border-[#2BADE7]"
-            />
-          </div>
-        </FormField>
-
-        <FormField label="Mobile number" htmlFor="mobile">
-          <input
-            id="mobile"
-            type="tel"
-            defaultValue={userData.mobile}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2BADE7] focus:border-[#2BADE7]"
-          />
-        </FormField>
-
-        <FormField label="Client ID" htmlFor="clientId">
-          <input
-            id="clientId"
-            type="text"
-            defaultValue={userData.clientId}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2BADE7] focus:border-[#2BADE7]"
-            readOnly
-          />
-        </FormField>
-
-        <FormField label="API KEY" htmlFor="apiKey">
-          <input
-            id="apiKey"
-            type="text"
-            defaultValue={userData.apiKey}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2BADE7] focus:border-[#2BADE7]"
-            readOnly
-          />
-        </FormField>
-
-        <FormField label="Encryption Key" htmlFor="encryptionKey">
-          <input
-            id="encryptionKey"
-            type="password"
-            defaultValue={userData.encryptionKey}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2BADE7] focus:border-[#2BADE7]"
-            readOnly
-          />
-        </FormField>
-
-        <div className="flex justify-end">
-          <button
-            onClick={handleSaveChanges}
-            className="px-4 py-2 bg-[#2BADE7] text-white rounded-full hover:bg-[#1A9AD5] transition-colors"
-          >
-            Save changes
-          </button>
-        </div>
-      </div>
+      <div className="rounded-lg p-6">{renderTabContent()}</div>
     </div>
   );
 }
