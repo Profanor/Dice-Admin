@@ -15,7 +15,7 @@ export default function Header() {
 
       {/* button and user avatar */}
       <div className="flex items-center gap-4 flex-shrink-0">
-        <button className="flex items-center gap-2 bg-[#2BADE7] hover:bg-[#1A9AD5] text-white px-4 py-2 rounded-full transition-colors whitespace-nowrap text-sm">
+        <button className="cursor-pointer flex items-center gap-2 bg-[#2BADE7] hover:bg-[#1A9AD5] text-white px-4 py-2 rounded-full transition-colors whitespace-nowrap text-sm">
           <Plus className="h-4 w-4" />
           <span>Create new Tournament</span>
         </button>

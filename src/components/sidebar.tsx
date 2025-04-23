@@ -7,6 +7,8 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
+import { useState } from "react";
+import Modal from "./Modals/logout";
 
 const logo = "/assets/images/logo.svg";
 const user = "/assets/images/smavatar.svg";
@@ -33,6 +35,7 @@ const NavItem = ({ icon, label, active, onClick }: NavItemProps) => (
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation(); // get current path
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
   const navItems = [
     {
@@ -62,6 +65,11 @@ export default function Sidebar() {
     },
   ];
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <div className="h-screen flex flex-col bg-[#001A26] w-[220px] min-w-[220px] py-4">
       <div className="px-6 py-4">
@@ -86,7 +94,7 @@ export default function Sidebar() {
         <NavItem
           icon={<LogOut size={20} />}
           label="Log out"
-          onClick={() => console.log("Log out")}
+          onClick={() => setIsLogoutModalOpen(true)}
         />
       </div>
 
@@ -101,6 +109,29 @@ export default function Sidebar() {
           </div>
         </div>
       </div>
+
+      {/* logout confirmation modal */}
+      <Modal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+      >
+        <h2 className="text-xl font-semibold mb-4">Confirm Logout</h2>
+        <p className="mb-6">Are you sure you want to log out?</p>
+        <div className="flex justify-end space-x-4">
+          <button
+            onClick={() => setIsLogoutModalOpen(false)}
+            className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+          >
+            Logout
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }

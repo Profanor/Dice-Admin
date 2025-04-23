@@ -22,35 +22,38 @@ export default function Overview() {
 
       {/* stat cards */}
       <div className="flex flex-wrap gap-6 mb-6">
-        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
+        <div className="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
             value={"100M"}
             label="Total stake"
-            icon={<img src={stake} alt="Stake Icon" className="w-8 h-8" />}
+            isSensitive={true}
+            icon={<img src={stake} alt="Stake Icon" className="w-10 h-10" />}
           />
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
+        <div className="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
             value="256k"
             label="Total Tournaments"
-            icon={<img src={trophy} alt="Trophy Icon" className="w-8 h-8" />}
+            icon={<img src={trophy} alt="Trophy Icon" className="w-10 h-10" />}
           />
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
+        <div className="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
             value="80"
             label="Total Active Tournaments"
-            icon={<img src={pad} alt="Pad Icon" className="w-8 h-8" />}
+            icon={<img src={pad} alt="Pad Icon" className="w-10 h-10" />}
           />
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
+        <div className="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
             value="157k"
             label="Subscribed Games"
-            icon={<img src={sub} alt="Subscription Icon" className="w-8 h-8" />}
+            icon={
+              <img src={sub} alt="Subscription Icon" className="w-10 h-10" />
+            }
           />
         </div>
       </div>

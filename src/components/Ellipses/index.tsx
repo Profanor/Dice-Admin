@@ -1,0 +1,23 @@
+import { FC } from "react";
+import "./ellipses.css";
+
+export type EllipsesLoaderProps = {
+  className?: string;
+  contentContainerStyle?: string;
+};
+
+const EllipsesLoader: FC<EllipsesLoaderProps> = ({
+  className = "",
+  contentContainerStyle = "",
+}) => {
+  return (
+    <div aria-label="Loading" className={`lds-ellipsis scale-75 ${className}`}>
+      <div className={contentContainerStyle} />
+      <div className={contentContainerStyle} />
+      <div className={contentContainerStyle} />
+      <div className={contentContainerStyle} />
+    </div>
+  );
+};
+
+export default EllipsesLoader;

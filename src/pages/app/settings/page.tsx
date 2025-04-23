@@ -4,6 +4,8 @@ import AccountTab from "@/components/account-tab";
 import ProfitsTab from "@/components/profits-tab";
 import PasswordTab from "@/components/password-tab";
 import ProfitShareTab from "@/components/profit-share-tab";
+import WebHookTab from "@/components/web-hook";
+import ThemeSettings from "@/components/theme-settings";
 
 const tabs = [
   { id: "account", label: "My Account details" },
@@ -45,9 +47,9 @@ export default function SettingsPage() {
       case "password":
         return <PasswordTab />;
       case "webhook":
-        return <div>Webhook content goes here</div>;
+        return <WebHookTab />;
       case "theme":
-        return <div>Theme settings content goes here</div>;
+        return <ThemeSettings />;
       case "api":
         return <div>API content goes here</div>;
       default:

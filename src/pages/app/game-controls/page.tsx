@@ -1,11 +1,59 @@
 import PageHeader from "@/components/page-header";
 import StatCard from "@/components/stat-card";
 import WeekSelector from "@/components/week-selector";
+import Table from "@/components/Table";
+import { ColumnDef } from "@tanstack/react-table";
 
 const stake = "/assets/images/stake.svg";
 const pad = "/assets/images/pad.svg";
 const sub = "/assets/images/sub.svg";
 const trophy = "/assets/images/trophy.svg";
+
+type GameHistory = {
+  id: string;
+  gameRef: string;
+  playerId: string;
+  userRoll: number;
+  compRoll: number;
+  stake: number;
+  profitOrLoss: number;
+  playedAt: string;
+};
+
+const columns: ColumnDef<GameHistory>[] = [
+  {
+    header: "S/N",
+    cell: ({ row }) => row.index + 1,
+  },
+  {
+    accessorKey: "gameRef",
+    header: "Game Reference",
+  },
+  {
+    accessorKey: "playerId",
+    header: "Player ID",
+  },
+  {
+    accessorKey: "userRoll",
+    header: "User Roll",
+  },
+  {
+    accessorKey: "compRoll",
+    header: "Comp. Roll",
+  },
+  {
+    accessorKey: "stake",
+    header: "Stake",
+  },
+  {
+    accessorKey: "profitOrLoss",
+    header: "Profit/Loss",
+  },
+  {
+    accessorKey: "playedAt",
+    header: "Played At",
+  },
+];
 
 export default function GameControls() {
   return (
@@ -19,7 +67,6 @@ export default function GameControls() {
         <WeekSelector />
       </div>
 
-      {/* stat cards */}
       <div className="flex flex-wrap gap-6 mb-6">
         <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
@@ -53,6 +100,15 @@ export default function GameControls() {
           />
         </div>
       </div>
+
+      <Table
+        columnDef={columns}
+        data={[]}
+        isLoading={false}
+        pagination={{ pageIndex: 0, pageSize: 10 }}
+        sorting={[]}
+        totalPages={1}
+      />
     </>
   );
 }
