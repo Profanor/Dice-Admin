@@ -1,4 +1,4 @@
-import SVGIcon, { SVGIconProps } from "@dice/components/Icons/SVGIcon";
+import SVGIcon, { SVGIconProps } from "@/components/Icons/SVGIcon";
 import { FC } from "react";
 
 type MenuIconProps = Partial<SVGIconProps>;

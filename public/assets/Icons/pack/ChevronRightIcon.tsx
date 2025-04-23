@@ -1,4 +1,4 @@
-import { SVGIconProps } from "@dice/components/Icons/SVGIcon";
+import { SVGIconProps } from "@/components/Icons/SVGIcon";
 import { FC } from "react";
 
 type ChevronRightIconProps = Partial<SVGIconProps>;

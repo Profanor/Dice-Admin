@@ -22,8 +22,9 @@ const Button: FC<ButtonProps> = ({
 
   return (
     <BaseButton
-      className={`transition-all active:scale-95 hover:opacity-95 ${buttonClassName} ${className}`}
+      className={`w-full transition-all active:scale-95 hover:opacity-95 ${buttonClassName} ${className}`}
       disabled={disabled}
+      buttonStyle={"w-full"}
       leftIconProps={{
         color: iconColor,
         ...leftIconProps,

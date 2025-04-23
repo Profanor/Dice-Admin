@@ -1,4 +1,6 @@
-import { FC, Suspense, lazy } from "react";
+import localforage from "localforage";
+import { FC, Suspense, lazy, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AppLayout = lazy(() => import("./AppLayout"));
 
@@ -9,6 +11,22 @@ const Spinner = () => (
 );
 
 const AppLayoutLazy: FC = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = await localforage.getItem("access_token");
+      console.log(token);
+      if (token) {
+        navigate("/");
+      } else {
+        navigate("/auth/login");
+      }
+    };
+
+    checkAuth();
+  }, []);
+
   return (
     <Suspense fallback={<Spinner />}>
       <AppLayout />

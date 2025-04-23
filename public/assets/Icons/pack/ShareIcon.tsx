@@ -1,4 +1,4 @@
-import SVGIcon, { SVGIconProps } from "@dice/components/Icons/SVGIcon";
+import SVGIcon, { SVGIconProps } from "@/components/Icons/SVGIcon";
 
 type ShareIconProps = Partial<SVGIconProps>;
 const ShareIcon = ({ stroke }: ShareIconProps) => {

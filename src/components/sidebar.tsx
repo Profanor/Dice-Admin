@@ -1,13 +1,15 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "@/store/user";
+import localforage from "localforage";
 import {
-  LayoutDashboard,
-  GamepadIcon,
-  Gamepad2Icon,
   BarChart3,
-  Settings,
+  Gamepad2Icon,
+  GamepadIcon,
+  LayoutDashboard,
   LogOut,
+  Settings,
 } from "lucide-react";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Modal from "./Modals/logout";
 
 const logo = "/assets/images/logo.svg";
@@ -34,6 +36,7 @@ const NavItem = ({ icon, label, active, onClick }: NavItemProps) => (
 
 export default function Sidebar() {
   const navigate = useNavigate();
+  const { logoutUser, data } = useUser();
   const location = useLocation(); // get current path
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
@@ -41,33 +44,35 @@ export default function Sidebar() {
     {
       icon: <LayoutDashboard size={20} />,
       label: "Dashboard",
-      path: "/dashboard",
+      path: "/",
     },
     {
       icon: <GamepadIcon size={20} />,
       label: "Game management",
-      path: "/dashboard/management",
+      path: "/management",
     },
     {
       icon: <Gamepad2Icon size={20} />,
       label: "Games & Controls",
-      path: "/dashboard/controls",
+      path: "/controls",
     },
     {
       icon: <BarChart3 size={20} />,
       label: "Analytics",
-      path: "/dashboard/analytics",
+      path: "/analytics",
     },
     {
       icon: <Settings size={20} />,
       label: "Settings",
-      path: "/dashboard/settings",
+      path: "/settings",
     },
   ];
 
   const handleLogout = () => {
+    logoutUser();
     localStorage.clear();
-    navigate("/");
+    localforage.clear();
+    navigate("/auth/login");
   };
 
   return (
@@ -100,12 +105,14 @@ export default function Sidebar() {
 
       <div className="border-t border-white/10 mt-2 pt-2 px-4 py-2">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
+          <div className="min-w-8 min-h-8 rounded-full bg-gray-300 overflow-hidden">
             <img src={user} alt="User" className="w-full h-full object-cover" />
           </div>
           <div className="flex flex-col">
-            <span className="text-white text-xs font-medium">Olivia Rhye</span>
-            <span className="text-white/60 text-xs">olivia@untitledui.com</span>
+            <span className="text-white text-xs font-medium">
+              {data?.companyName}
+            </span>
+            <span className="text-white/60 text-xs">{data?.email}</span>
           </div>
         </div>
       </div>
@@ -120,13 +127,13 @@ export default function Sidebar() {
         <div className="flex justify-end space-x-4">
           <button
             onClick={() => setIsLogoutModalOpen(false)}
-            className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+            className="cursor-pointer px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
           >
             Cancel
           </button>
           <button
             onClick={handleLogout}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            className="cursor-pointer px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
           >
             Logout
           </button>

@@ -1,11 +1,11 @@
-import { useState } from "react";
-import TabNavigation from "@/components/tab-navigation";
 import AccountTab from "@/components/account-tab";
-import ProfitsTab from "@/components/profits-tab";
 import PasswordTab from "@/components/password-tab";
 import ProfitShareTab from "@/components/profit-share-tab";
-import WebHookTab from "@/components/web-hook";
+import ProfitsTab from "@/components/profits-tab";
+import TabNavigation from "@/components/tab-navigation";
 import ThemeSettings from "@/components/theme-settings";
+import WebHookTab from "@/components/web-hook";
+import { useState } from "react";
 
 const tabs = [
   { id: "account", label: "My Account details" },
@@ -20,17 +20,6 @@ const tabs = [
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState("account");
 
-  // API call
-  const userData = {
-    photo: "/placeholder.svg?height=100&width=100",
-    companyName: "Hollywood Bets",
-    email: "hollywoodbets-demo@yopmail.com",
-    mobile: "080123456789",
-    clientId: "r1pNmwfn",
-    apiKey: "SV.live1741693483164iKY1F0kE2MTLY5AY",
-    encryptionKey: "••••••••••••••••••••••",
-  };
-
   const handleSaveChanges = () => {
     console.log("Saving changes...");
   };
@@ -39,7 +28,7 @@ export default function SettingsPage() {
   const renderTabContent = () => {
     switch (activeTab) {
       case "account":
-        return <AccountTab userData={userData} onSave={handleSaveChanges} />;
+        return <AccountTab onSave={handleSaveChanges} />;
       case "profits":
         return <ProfitsTab />;
       case "share":
@@ -53,7 +42,7 @@ export default function SettingsPage() {
       case "api":
         return <div>API content goes here</div>;
       default:
-        return <AccountTab userData={userData} onSave={handleSaveChanges} />;
+        return <AccountTab onSave={handleSaveChanges} />;
     }
   };
 

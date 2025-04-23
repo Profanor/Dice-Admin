@@ -1,20 +1,12 @@
-import type React from "react";
+import { useLogin } from "@/api/hooks/auth/useLogin";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import Button from "./Buttons/button";
 
 const logo2 = "/assets/images/logo2.svg";
 
 export default function LoginCard() {
-  const [clientId, setClientId] = useState("");
-  const [password, setPassword] = useState("");
+  const { formFieldHandler, isLoading } = useLogin();
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({ clientId, password });
-    navigate("/dashboard");
-  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -37,7 +29,7 @@ export default function LoginCard() {
         Please enter your details
       </p>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="space-y-4">
         <div className="space-y-2">
           <label
             htmlFor="clientId"
@@ -48,11 +40,11 @@ export default function LoginCard() {
           <input
             id="clientId"
             type="text"
-            value={clientId}
-            onChange={(e) => setClientId(e.target.value)}
+            autoFocus
             placeholder="Enter your client ID"
             required
             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2BADE7] focus:border-[#2BADE7]"
+            {...formFieldHandler.clientId}
           />
         </div>
 
@@ -67,8 +59,7 @@ export default function LoginCard() {
             <input
               id="password"
               type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              {...formFieldHandler.password}
               placeholder="Enter your password"
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#2BADE7] focus:border-[#2BADE7]"
@@ -116,13 +107,14 @@ export default function LoginCard() {
           </div>
         </div>
 
-        <button
-          type="submit"
+        <Button
+          onClick={formFieldHandler.handleSubmit}
+          isLoading={isLoading}
           className="w-full py-2 px-4 mt-4 text-[16px] cursor-pointer border border-transparent rounded-full shadow-sm text-white bg-[#2BADE7] hover:bg-[#1A9AD5] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#2BADE7]"
         >
           Login
-        </button>
-      </form>
+        </Button>
+      </div>
     </div>
   );
 }
