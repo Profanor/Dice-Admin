@@ -1,3 +1,4 @@
+import { useDashboardStats } from "@/api/hooks/dashboard/useDashboardStats";
 import AnalyticsBarChart from "@/components/bar-chart";
 import GamesPieChart from "@/components/pie-chart";
 import StatCard from "@/components/stat-card";
@@ -10,6 +11,17 @@ const sub = "/assets/images/sub.svg";
 const trophy = "/assets/images/trophy.svg";
 
 export default function Overview() {
+  const { data, isLoading, isError } = useDashboardStats();
+
+  if (isLoading) return <p>Loading dashboard data...</p>;
+  if (isError || !data) return <p>Failed to load dashboard data.</p>;
+
+  const { summary, charts, barChart } = data;
+
+  // helper to get values from summary
+  const getStatValue = (label: string) =>
+    summary.find((item) => item.name === label)?.value || "N/A";
+
   return (
     <>
       <div className="flex items-center justify-between mb-6">
@@ -24,7 +36,7 @@ export default function Overview() {
       <div className="flex flex-wrap gap-6 mb-6">
         <div className="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
-            value={"100M"}
+            value={getStatValue("Total Stake")}
             label="Total stake"
             isSensitive={true}
             icon={<img src={stake} alt="Stake Icon" className="w-10 h-10" />}
@@ -33,7 +45,7 @@ export default function Overview() {
 
         <div className="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
-            value="256k"
+            value={getStatValue("Total Tournaments")}
             label="Total Tournaments"
             icon={<img src={trophy} alt="Trophy Icon" className="w-10 h-10" />}
           />
@@ -41,7 +53,7 @@ export default function Overview() {
 
         <div className="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
-            value="80"
+            value={getStatValue("Active Tournaments")}
             label="Total Active Tournaments"
             icon={<img src={pad} alt="Pad Icon" className="w-10 h-10" />}
           />
@@ -49,11 +61,9 @@ export default function Overview() {
 
         <div className="bg-white rounded-lg shadow-md border border-gray-100 p-6 flex-1 min-w-[200px]">
           <StatCard
-            value="157k"
+            value={getStatValue("Subscribed Games")}
             label="Subscribed Games"
-            icon={
-              <img src={sub} alt="Subscription Icon" className="w-10 h-10" />
-            }
+            icon={<img src={sub} alt="Sub Icon" className="w-10 h-10" />}
           />
         </div>
       </div>
@@ -65,14 +75,25 @@ export default function Overview() {
 
       {/* charts */}
       <div className="flex flex-col lg:flex-row gap-6">
-        {/* bar chart - takes available space */}
         <div className="flex-1 bg-white rounded-xl shadow-lg border border-gray-100 p-6">
-          <AnalyticsBarChart />
+          <AnalyticsBarChart
+            data={barChart.datasets.map((dataset, index) => ({
+              name: barChart.labels[index],
+              games: dataset.data[0],
+              stakes: dataset.data[1],
+              winnings: dataset.data[2],
+            }))}
+          />
         </div>
 
-        {/* pie chart - aligned to right */}
         <div className="w-[360px] bg-white rounded-2xl shadow-md border border-gray-100 p-4">
-          <GamesPieChart />
+          <GamesPieChart
+            data={charts.map((chart) => ({
+              name: chart.group,
+              value: chart.data.reduce((sum, item) => sum + item.value, 0),
+              color: chart.color || "#000",
+            }))}
+          />
         </div>
       </div>
     </>

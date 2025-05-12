@@ -1,14 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { MoreVertical } from "lucide-react";
 
-const data = [
-  { name: "Color Games", value: 25, color: "#F97316" },
-  { name: "Under/Over Games", value: 15, color: "#EF4444" },
-  { name: "Mega10 Games", value: 10, color: "#8B5CF6" },
-  { name: "Lotto Games", value: 20, color: "#06B6D4" },
-  { name: "Odds/even Games", value: 15, color: "#FBBF24" },
-  { name: "Single Games", value: 15, color: "#3B82F6" },
-];
+// const data = [
+//   { name: "Color Games", value: 25, color: "#F97316" },
+//   { name: "Under/Over Games", value: 15, color: "#EF4444" },
+//   { name: "Mega10 Games", value: 10, color: "#8B5CF6" },
+//   { name: "Lotto Games", value: 20, color: "#06B6D4" },
+//   { name: "Odds/even Games", value: 15, color: "#FBBF24" },
+//   { name: "Single Games", value: 15, color: "#3B82F6" },
+// ];
+
+interface GamesPieChartProps {
+  data: {
+    name: string;
+    value: number;
+    color: string;
+  }[];
+}
 
 const renderCustomizedLegend = (props: any) => {
   const { payload } = props;
@@ -28,7 +37,7 @@ const renderCustomizedLegend = (props: any) => {
   );
 };
 
-export default function GamesPieChart() {
+export default function GamesPieChart({ data }: GamesPieChartProps) {
   return (
     <div className="w-full flex flex-col">
       <div className="relative mb-4">

@@ -10,17 +10,26 @@ import {
 } from "recharts";
 import { Calendar } from "lucide-react";
 
-const data = [
-  { name: "Mon", games: 300, stakes: 200, winnings: 100 },
-  { name: "Tue", games: 350, stakes: 250, winnings: 150 },
-  { name: "Wed", games: 280, stakes: 220, winnings: 120 },
-  { name: "Thu", games: 320, stakes: 240, winnings: 130 },
-  { name: "Fri", games: 280, stakes: 200, winnings: 100 },
-  { name: "Sat", games: 330, stakes: 260, winnings: 140 },
-  { name: "Today", games: 400, stakes: 300, winnings: 200 },
-];
+// const data = [
+//   { name: "Mon", games: 300, stakes: 200, winnings: 100 },
+//   { name: "Tue", games: 350, stakes: 250, winnings: 150 },
+//   { name: "Wed", games: 280, stakes: 220, winnings: 120 },
+//   { name: "Thu", games: 320, stakes: 240, winnings: 130 },
+//   { name: "Fri", games: 280, stakes: 200, winnings: 100 },
+//   { name: "Sat", games: 330, stakes: 260, winnings: 140 },
+//   { name: "Today", games: 400, stakes: 300, winnings: 200 },
+// ];
 
-export default function AnalyticsBarChart() {
+interface AnalyticsBarChartProps {
+  data: {
+    name: string;
+    games: number;
+    stakes: number;
+    winnings: number;
+  }[];
+}
+
+export default function AnalyticsBarChart({ data }: AnalyticsBarChartProps) {
   const [activeDataKeys, setActiveDataKeys] = useState({
     games: true,
     stakes: true,
